@@ -1,0 +1,12 @@
+.include "nominal.jsim"
+.include "custom_gates.jsim"
+
+* dc analysis to create VTC
+Xtest vin vin vout nand2
+Vin vin 0 0v
+
+Vol vol 0 0.3v   
+Voh voh 0 3v 	 
+
+.dc Vin 0 3.3 .005
+.plot vin vout voh vol

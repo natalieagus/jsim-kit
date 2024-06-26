@@ -1,0 +1,18 @@
+.include "nominal.jsim"
+.include "custom_gates.jsim"
+
+* test jig for measuring tcd and tpd
+Xdriver vin nin inv
+Xtest vdd nin nout nand2
+* simulate load at the output terminal of nand2 gate
+Cload nout 0 .02pf
+Vin vin 0 pulse(3.3,0,5ns,.1ns,.1ns,4.8ns)
+
+* helper plots to make measurements earlier 	
+Vol vol 0 0.3v   
+Vil vil 0 0.6v
+Vih vih 0 2.6v
+Voh voh 0 3.0v
+
+.tran 15ns
+.plot nin nout vol vil vih voh
