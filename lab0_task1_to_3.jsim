@@ -4,10 +4,13 @@
 
 Xdriver1 clk1 a inverter
 Xdriver2 clk2 b inverter
-Xtest a b z or2
+Xtest a b z and2
 
 .tran 20ns
 
-.plot a
-.plot b
-.plot z
+.plot a 
+.plot b 
+.plot z 
+
+
+
