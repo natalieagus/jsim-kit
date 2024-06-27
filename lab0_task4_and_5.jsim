@@ -2,7 +2,7 @@
 .include "custom_gates.jsim"
 
 * dc analysis to create VTC
-Xtest vin vin vout nand2
+Xtest vin vin vout and2
 Vin vin 0 0v
 
 Vol vol 0 0.3v   
