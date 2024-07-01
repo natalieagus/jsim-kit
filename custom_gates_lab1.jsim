@@ -12,7 +12,24 @@ MPD1 z a 0 0 NENH sw=16 sl=1
 MPU1 z a vdd vdd PENH sw=16 sl=1
 .ends
 
+* 2-input and
 .subckt and2 a b z
 Xnand a b nand_out nand2
 Xinverter nand_out z inv
 .ends
+
+* 2-input nor: inputs are a and b, output is z
+.subckt nor2 a b z
+MPD1 z a 0 0 NENH sw=8 sl=1
+MPD2 z b 0 0 NENH sw=8 sl=1
+MPU1 z a 1 vdd PENH sw=9 sl=1
+MPU2 1 b vdd vdd PENH sw=9 sl=1
+.ends
+
+
+* 2-input or
+.subckt or2 a b z
+Xnor2 a b a_or_b_inv nor2
+Xor_out a_or_b_inv z inv
+.ends
+

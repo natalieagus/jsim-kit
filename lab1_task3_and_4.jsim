@@ -1,0 +1,29 @@
+.include "nominal.jsim"
+.include "custom_gates_lab1.jsim"
+
+.subckt half_adder a b sum carry
+Xnand1_unit a b nand1_out nand2
+Xnand2_unit nand1_out a nand2_out nand2
+Xnand3_unit nand1_out b nand3_out nand2 
+Xoutput_sum nand2_out nand3_out sum nand2
+Xoutput_carry nand1_out nand1_out carry nand2
+.ends
+
+
+* test jig for measuring tcd and tpd
+Xdriver vin B inv
+Xtest vdd B sum carry half_adder
+* simulate load at the output terminals of the half adder unit
+Cload_carry carry 0 .02pf
+Cload_sum sum 0 .02pf
+Vin vin 0 pulse(3.3,0,5ns,.1ns,.1ns,4.8ns)
+
+* helper plots to make measurements earlier 	
+Vol vol 0 0.3v   
+Vil vil 0 0.6v
+Vih vih 0 2.6v
+Voh voh 0 3.0v
+
+.tran 15ns
+.plot B sum vol vil vih voh
+.plot B carry vol vil vih voh
